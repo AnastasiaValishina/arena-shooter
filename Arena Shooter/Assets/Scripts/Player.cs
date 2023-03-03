@@ -8,15 +8,22 @@ public class Player : MonoBehaviour
 
     float speed;
     float timeSinceLastJump = Mathf.Infinity;
+
+    Rigidbody2D rb;
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        MoveLeftAndRight();
+        Jump();
+        MoveControl();
+        FlipSprite();
+    }
 
+    private void Jump()
+    {
         if (Input.GetKeyDown("space"))
         {
             speed = jumpSpeed;
@@ -30,15 +37,22 @@ public class Player : MonoBehaviour
         timeSinceLastJump += Time.deltaTime;
     }
 
-    private void MoveLeftAndRight()
+    void MoveControl()
     {
-        float vert = Input.GetAxis("Vertical") * speed;
-        float hor = Input.GetAxis("Horizontal") * speed;
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        vert *= Time.deltaTime;
-        hor *= Time.deltaTime;
+        rb.velocity = new Vector2(moveHorizontal, moveVertical) * speed;
+        rb.position = new Vector3(rb.position.x, rb.position.y);
+      
+    }
 
-        transform.Translate(0, vert, 0);
-        transform.Translate(hor, 0, 0);
+    void FlipSprite()
+    {
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+        if (playerHasHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
+        }
     }
 }
