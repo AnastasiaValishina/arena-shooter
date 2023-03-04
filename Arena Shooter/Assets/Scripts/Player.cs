@@ -7,18 +7,21 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpDuration;
 
     float speed;
-    float timeSinceLastJump = Mathf.Infinity;
+    float timeSinceJumpStarted = Mathf.Infinity;
+    Animator animator;
 
     Rigidbody2D rb;
     void Start()
     {
+        speed = walkingSpeed;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        Run();
         Jump();
-        MoveControl();
         FlipSprite();
     }
 
@@ -29,30 +32,34 @@ public class Player : MonoBehaviour
             speed = jumpSpeed;
         }
 
-        if (jumpDuration < timeSinceLastJump)
+        if (jumpDuration < timeSinceJumpStarted)
         {
-            timeSinceLastJump = 0;
+            timeSinceJumpStarted = 0;
             speed = walkingSpeed;
         }
-        timeSinceLastJump += Time.deltaTime;
+        timeSinceJumpStarted += Time.deltaTime;
     }
 
-    void MoveControl()
+    void Run()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector2(moveHorizontal, moveVertical) * speed;
-        rb.position = new Vector3(rb.position.x, rb.position.y);
-      
+
+        animator.SetBool("isRunning", HasSpeed(rb.velocity.x) || HasSpeed(rb.velocity.y));
     }
 
     void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
-        if (playerHasHorizontalSpeed)
+        if (HasSpeed(rb.velocity.x))
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
         }
+    }
+
+    private bool HasSpeed(float pos)
+    {
+        return Mathf.Abs(pos) > Mathf.Epsilon;
     }
 }
