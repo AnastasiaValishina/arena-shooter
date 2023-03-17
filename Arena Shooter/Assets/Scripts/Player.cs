@@ -5,17 +5,19 @@ public class Player : MonoBehaviour
     [SerializeField] float walkingSpeed;
     [SerializeField] float jumpSpeed;
     [SerializeField] float jumpDuration;
+    [SerializeField] SpriteRenderer sprite;
 
     float speed;
     float timeSinceJumpStarted = Mathf.Infinity;
     Animator animator;
+    
 
     Rigidbody2D rb;
     void Start()
     {
         speed = walkingSpeed;
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = sprite.GetComponent<Animator>();
     }
 
     void Update()
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour
     {
         if (HasSpeed(rb.velocity.x))
         {
-            transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
+            sprite.transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
         }
     }
 
