@@ -485,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &988997584
 Transform:
   m_ObjectHideFlags: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7836674655469778522, guid: a2aa42a2649f3854cb351b52fc3c5d6c, type: 3}
   minDelay: 1
-  maxDelay: 10
+  maxDelay: 4
   spawnPoints:
   - {fileID: 2085698153}
   - {fileID: 555428827}

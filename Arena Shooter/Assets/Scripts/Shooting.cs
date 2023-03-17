@@ -4,12 +4,12 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] float bulletSpeed;
+    [SerializeField] Transform gun;
+    [SerializeField] float timeBetweenFiring;
 
     Camera mainCam;
-    public Transform gun;
-    public bool canFire;
+    bool canFire = true;
     float timer;
-    public float timeBetweenFiring;
 
     private void Start()
     {

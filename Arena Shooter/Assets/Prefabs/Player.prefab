@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2208410386830242408}
   - component: {fileID: 2208410386830242411}
   - component: {fileID: 2208410386830242410}
-  - component: {fileID: 2208410386830242405}
   - component: {fileID: 2208410386830242404}
+  - component: {fileID: 2244013929146065692}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -74,26 +74,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &2208410386830242405
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2208410386830242415}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4d0022f851861444798e3c000bd24d6e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!70 &2208410386830242404
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,6 +90,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.009725481, y: -0.12318933}
   m_Size: {x: 0.6563665, y: 0.75362134}
   m_Direction: 0
+--- !u!114 &2244013929146065692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208410386830242415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9d65b5776c2844fadfdc21184e9718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &2508570363670927860
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,5 +340,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5094606752478236023, guid: ead77fd1a28e2e042b240325f22b7ac1, type: 3}
   bulletSpeed: 7
   gun: {fileID: 205064186106387940}
-  canFire: 1
   timeBetweenFiring: 0.1
