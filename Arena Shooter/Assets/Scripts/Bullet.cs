@@ -23,4 +23,11 @@ public class Bullet : MonoBehaviour
     {
         return mainCam.ScreenToWorldPoint(Input.mousePosition);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
