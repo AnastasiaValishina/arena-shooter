@@ -13,7 +13,7 @@ TagManager:
   - Water
   - UI
   - CameraCollider
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -56,4 +56,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1930269813
+    locked: 0
+  - name: Collectable
+    uniqueID: 888125071
     locked: 0
