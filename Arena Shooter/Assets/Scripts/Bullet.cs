@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] int damage;
+
     Camera mainCam;
     Rigidbody2D rb;
     public float force;
@@ -25,6 +27,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Health>().DealDamage(damage);
+        }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
