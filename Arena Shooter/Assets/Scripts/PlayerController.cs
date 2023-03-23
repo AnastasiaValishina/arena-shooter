@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] float walkingSpeed;
     [SerializeField] float jumpSpeed;
@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
 
     float speed;
     float timeSinceJumpStarted = Mathf.Infinity;
-    Animator animator;
-    
+    Animator animator;    
 
     Rigidbody2D rb;
+
     void Start()
     {
         speed = walkingSpeed;

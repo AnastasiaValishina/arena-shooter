@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  boostersToSpawn:
+  - {fileID: 8506184138008218465, guid: ba9fa10a78969c74eaad276dbe32e327, type: 3}
+  - {fileID: 3224370248023793394, guid: 4969be63e6516d041820a8bac799311c, type: 3}
+  spawnChance: 20
 --- !u!114 &9008963993845234548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +133,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!50 &8792187480862837724
 Rigidbody2D:
   serializedVersion: 4
