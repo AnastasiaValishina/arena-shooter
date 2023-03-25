@@ -1,12 +1,21 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] float minDelay, maxDelay;
-    [SerializeField] Transform[] spawnPoints;
-    float nextSpawnTime;
+    [SerializeField] SpawnPoint[] spawnPoints;    
+    [SerializeField] Tilemap tilemap;
 
+    float nextSpawnTime;
+    BoundsInt bounds;
+
+    private void Start()
+    {
+        bounds = tilemap.cellBounds;
+    }
     void Update()
     {
         SpawnEnemy();
@@ -16,15 +25,37 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Time.time > nextSpawnTime)
         {
-            Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
+            Instantiate(enemyPrefab, GetRandomPoint(), Quaternion.identity);
             nextSpawnTime = Time.time + Random.Range(minDelay, minDelay);
         }
     }
 
-    Vector2 GetRandomPosition()
+    Vector2 GetRandomPoint()
     {
-        var spawnPointIndex = Random.Range(0, spawnPoints.Length);
-        return spawnPoints[spawnPointIndex].position;
+        MarkPointsInRange();
+
+        List<SpawnPoint> pointsInRange = new List<SpawnPoint>();
+
+        foreach (SpawnPoint point in spawnPoints)
+        {
+            if (point.IsInRange())
+            {
+                pointsInRange.Add(point);
+            }
+        }
+
+        var spawnPointIndex = Random.Range(0, pointsInRange.Count - 1);
+        var randomPoint = pointsInRange[spawnPointIndex];
+
+        return randomPoint.transform.position;
+    }
+
+    private void MarkPointsInRange()
+    {
+        foreach (SpawnPoint point in spawnPoints)
+        {
+            point.CheckIfInRange(bounds);
+        }
     }
 
     private void OnDrawGizmos()
