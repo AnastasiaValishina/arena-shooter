@@ -4,30 +4,32 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] protected float speed = 1;
     [SerializeField] GameObject[] boostersToSpawn;
     [Range(0, 100)] [SerializeField] int spawnChance = 30;
 
-    Transform target;
+    protected Transform target;
     bool isQuitting;
 
     void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;        
+        SetTarget();
+    }
+
+    protected void SetTarget()
+    {
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()
     {
-        if (target == null) return;
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        MoveToTarget();
     }
 
-    private void OnDestroy()
+    protected void MoveToTarget()
     {
-        if (!isQuitting)
-        {
-            SpawnBooster();
-        }
+        if (target == null) return;
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
     private void SpawnBooster()
@@ -37,6 +39,19 @@ public class Enemy : MonoBehaviour
         {
             GameObject randomBooster = boostersToSpawn[Random.Range(0, boostersToSpawn.Length)];
             Instantiate(randomBooster, transform.position, Quaternion.identity);
+        }
+    }
+
+    public void ChangeSpeed(float increasePercent)
+    {
+        speed = speed + (speed * increasePercent / 100);
+    }
+
+    private void OnDestroy()
+    {
+        if (!isQuitting)
+        {
+            SpawnBooster();
         }
     }
 
