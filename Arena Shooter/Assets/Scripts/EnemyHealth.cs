@@ -7,7 +7,6 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         healthPoints = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Health);
-        Debug.Log(healthPoints);
     }
 
     public void DealDamage(int damage)

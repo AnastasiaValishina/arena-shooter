@@ -16,12 +16,12 @@ MonoBehaviour:
   - characterClass: 0
     stats:
     - stat: 0
-      value: 11
+      value: 10
     - stat: 1
       value: 1
   - characterClass: 1
     stats:
     - stat: 0
-      value: 21
+      value: 20
     - stat: 1
-      value: 2
+      value: 1.5
