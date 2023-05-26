@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBoss : Enemy
+public class Buffer : Enemy, IModifierProvider
 {
     [SerializeField] float distanceToKeep;
     [SerializeField] float speedIncrease;
@@ -31,6 +32,19 @@ public class EnemyBoss : Enemy
     void MoveAway()
     {
         if (target == null) return;
-        transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, -currentSpeed * Time.deltaTime);
+    }
+
+    public IEnumerable<float> GetAdditiveModifiers(EnemyStat stat)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public IEnumerable<float> GetPercentageModifiers(EnemyStat stat)
+    {
+        if (stat == EnemyStat.Speed)
+        {
+            yield return speedIncrease;
+        }
     }
 }

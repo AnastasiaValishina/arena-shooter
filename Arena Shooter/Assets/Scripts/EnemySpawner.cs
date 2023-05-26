@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -5,12 +6,15 @@ using UnityEngine.Tilemaps;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject enemyBossPrefab;
     [SerializeField] float minDelay, maxDelay;
     [SerializeField] SpawnPoint[] spawnPoints;    
     [SerializeField] Tilemap tilemap;
 
     float nextSpawnTime;
     BoundsInt bounds;
+
+    public event Action onBufferSpawn;
 
     private void Start()
     {
@@ -19,6 +23,10 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         SpawnEnemy();
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SpawnBoss();
+        }
     }
 
     void SpawnEnemy()
@@ -26,10 +34,17 @@ public class EnemySpawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             Instantiate(enemyPrefab, GetRandomPoint(), Quaternion.identity);
-            nextSpawnTime = Time.time + Random.Range(minDelay, minDelay);
+            nextSpawnTime = Time.time + UnityEngine.Random.Range(minDelay, minDelay);
+            onBufferSpawn();
+            Debug.Log("Enemy is spawned");
         }
     }
 
+    void SpawnBoss()
+    {
+            Instantiate(enemyBossPrefab, GetRandomPoint(), Quaternion.identity);
+            Debug.Log("Boss is spawned");
+    }
     Vector2 GetRandomPoint()
     {
         MarkPointsInRange();
@@ -44,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        var spawnPointIndex = Random.Range(0, pointsInRange.Count - 1);
+        var spawnPointIndex = UnityEngine.Random.Range(0, pointsInRange.Count - 1);
         var randomPoint = pointsInRange[spawnPointIndex];
 
         return randomPoint.transform.position;

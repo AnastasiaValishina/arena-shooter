@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2643249715522086532}
   - component: {fileID: 2643249715522086533}
   - component: {fileID: 2643249715522086534}
+  - component: {fileID: -6663006019013432839}
   m_Layer: 0
-  m_Name: EnemyBoss
+  m_Name: Buffer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d498f1d84bb1349b64728c6318b429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   boostersToSpawn:
   - {fileID: 8506184138008218465, guid: ba9fa10a78969c74eaad276dbe32e327, type: 3}
   - {fileID: 3224370248023793394, guid: 4969be63e6516d041820a8bac799311c, type: 3}
@@ -118,3 +118,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 500
+--- !u!114 &-6663006019013432839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643249715522086538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f69115bcaba7d4ab92a7faa5482a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterClass: 1
+  progression: {fileID: 11400000, guid: 414e9a91506c38c4c9406d03d0771f5a, type: 2}
