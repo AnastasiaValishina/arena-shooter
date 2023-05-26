@@ -10,7 +10,8 @@ public class EnemyBaseStats : MonoBehaviour
 
     public float GetStat(EnemyStat stat)
     {
-        return GetBaseStat(stat) + (1 + GetPercentageModifier(stat) / 100);
+        var baseStat = GetBaseStat(stat); 
+        return baseStat + (GetPercentageModifier(stat) * baseStat / 100);
     }
 
     private float GetBaseStat(EnemyStat stat)

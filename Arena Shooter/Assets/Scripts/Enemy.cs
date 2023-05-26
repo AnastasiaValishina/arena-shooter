@@ -4,7 +4,6 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    //[SerializeField] protected float speed = 1;
     [SerializeField] GameObject[] boostersToSpawn;
     [Range(0, 100)] [SerializeField] int spawnChance = 30;
 
@@ -12,11 +11,6 @@ public class Enemy : MonoBehaviour
     bool isQuitting;
 
     protected float currentSpeed;
-    // берем скорость из бейз стат +
-    // проверяем +
-    // баффер
-    // обновить скорость у всех
-    // убить бафера
 
     private void Awake()
     {
@@ -70,10 +64,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-/*    public void ChangeSpeed(float increasePercent)
-    {
-        speed = speed + (speed * increasePercent / 100);
-    }*/
 
     private void OnDestroy()
     {

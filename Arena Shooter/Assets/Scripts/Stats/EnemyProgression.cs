@@ -7,7 +7,7 @@ public class EnemyProgression : ScriptableObject
 {
     [SerializeField] EnemyProgressionClass[] enemyClasses;
 
-    Dictionary<EnemyClass, Dictionary<EnemyStat, int>> lookupTable = null;
+    Dictionary<EnemyClass, Dictionary<EnemyStat, float>> lookupTable = null;
 
     public float GetStat(EnemyClass enemyClass, EnemyStat stat)
     {
@@ -20,11 +20,11 @@ public class EnemyProgression : ScriptableObject
     {
         if (lookupTable != null) return;
 
-        lookupTable = new Dictionary<EnemyClass, Dictionary<EnemyStat, int>>();
+        lookupTable = new Dictionary<EnemyClass, Dictionary<EnemyStat, float>>();
 
         foreach (EnemyProgressionClass enemyProgressionClass in enemyClasses)
         {
-            var statLookupTable = new Dictionary<EnemyStat, int>();
+            var statLookupTable = new Dictionary<EnemyStat, float>();
             foreach (EnemyProgressionStat progressionStat in enemyProgressionClass.stats)
             {
                 statLookupTable[progressionStat.stat] = progressionStat.value;
@@ -44,7 +44,7 @@ public class EnemyProgression : ScriptableObject
     public class EnemyProgressionStat
     {
         public EnemyStat stat;
-        public int value;
+        public float value;
         //public float[] levels;
     }
 }

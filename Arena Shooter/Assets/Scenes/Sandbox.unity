@@ -1650,8 +1650,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7836674655469778522, guid: a2aa42a2649f3854cb351b52fc3c5d6c, type: 3}
   enemyBossPrefab: {fileID: 2643249715522086538, guid: 5d3af0a0d344b914785561e443be1ddf, type: 3}
-  minDelay: 4
-  maxDelay: 10
+  minDelay: 2
+  maxDelay: 5
   spawnPoints:
   - {fileID: 2085698154}
   - {fileID: 555428828}
@@ -12954,10 +12954,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2208410385720346831, guid: 5f8260e518470384eb3c6fcb22a8e928, type: 3}
-      propertyPath: timeBetweenFiring
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2208410386830242408, guid: 5f8260e518470384eb3c6fcb22a8e928, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -13006,8 +13002,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -7027306336368770859, guid: 5f8260e518470384eb3c6fcb22a8e928, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f8260e518470384eb3c6fcb22a8e928, type: 3}
 --- !u!1001 &3224370247538196877
 PrefabInstance:
