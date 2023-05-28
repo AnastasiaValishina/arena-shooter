@@ -4,7 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float healthPoints;
 
-    public void DealDamage(int damage)
+    public void TakeDamage(float damage)
     {
         healthPoints -= damage;
         if (healthPoints <= 0)

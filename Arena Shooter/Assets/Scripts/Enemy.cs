@@ -2,18 +2,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] float timeBetweenHits = 1f;
+
     protected Transform target;
     protected float currentSpeed;
+    protected float damage = 0;
+
+    float nextHitTime;
 
     private void Awake()
     {
         SetTarget();
         UpdateSpeed();
+        damage = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Damage);
     }
 
     void Update()
     {
         MoveToTarget();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (Time.time < nextHitTime) return;
+        if (other.transform != target) return;
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+        //if (target.IsDead()) return;
+        Debug.Log(damage);
+        playerHealth.TakeDamage(damage);
+        nextHitTime = Time.time + timeBetweenHits;
     }
 
     private void OnEnable()
@@ -34,7 +51,7 @@ public class Enemy : MonoBehaviour
     private void UpdateSpeed()
     {
         currentSpeed = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Speed);
-        Debug.Log(name + " updated speed to " + currentSpeed);
+        //Debug.Log(name + " updated speed to " + currentSpeed);
     }
 
     protected void MoveToTarget()

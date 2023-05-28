@@ -19,9 +19,17 @@ MonoBehaviour:
       value: 10
     - stat: 1
       value: 1
+    - stat: 2
+      value: 1
+    - stat: 3
+      value: 6
   - characterClass: 1
     stats:
     - stat: 0
       value: 20
     - stat: 1
       value: 1.5
+    - stat: 2
+      value: 1.5
+    - stat: 3
+      value: 17

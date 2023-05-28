@@ -36,14 +36,13 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemyPrefab, GetRandomPoint(), Quaternion.identity);
             nextSpawnTime = Time.time + UnityEngine.Random.Range(minDelay, minDelay);
             onBufferSpawn();
-            Debug.Log("Enemy is spawned");
         }
     }
 
     void SpawnBoss()
     {
             Instantiate(enemyBossPrefab, GetRandomPoint(), Quaternion.identity);
-            Debug.Log("Boss is spawned");
+            //Debug.Log("Boss is spawned");
     }
     Vector2 GetRandomPoint()
     {
