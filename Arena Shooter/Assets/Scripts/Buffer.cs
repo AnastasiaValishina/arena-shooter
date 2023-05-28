@@ -6,11 +6,6 @@ public class Buffer : Enemy, IModifierProvider
     [SerializeField] float distanceToKeep;
     [SerializeField] float speedIncrease;
 
-    void Start()
-    {
-        SetTarget();
-    }
-
     void Update()
     {
         if (InRangeOfPlayer())
