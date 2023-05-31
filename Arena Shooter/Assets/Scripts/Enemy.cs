@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         if (other.transform != target) return;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         //if (target.IsDead()) return;
-        Debug.Log(damage);
+
         playerHealth.TakeDamage(damage);
         nextHitTime = Time.time + timeBetweenHits;
     }

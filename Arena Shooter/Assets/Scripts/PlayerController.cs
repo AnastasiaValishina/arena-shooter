@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
     }
 
+    public void PlayHitAnimation()
+    {
+        animator.SetTrigger("hit");
+    }
+
     private void Jump()
     {
         if (Input.GetKeyDown("space"))
