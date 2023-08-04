@@ -7,30 +7,46 @@ public class EnemyProgression : ScriptableObject
 {
     [SerializeField] EnemyProgressionClass[] enemyClasses;
 
-    Dictionary<EnemyClass, Dictionary<EnemyStat, float>> lookupTable = null;
+    Dictionary<EnemyClass, Dictionary<EnemyStat, float[]>> lookupTable = null;
 
-    public float GetStat(EnemyClass enemyClass, EnemyStat stat)
+    public float GetStat(EnemyClass enemyClass, EnemyStat stat, int level)
     {
         BuildLookup();
 
-        return lookupTable[enemyClass][stat];
+        float[] levels = lookupTable[enemyClass][stat];
+
+        if (levels.Length < level)
+        {
+            return 0;
+        }
+
+        return levels[level - 1];
     }
 
     private void BuildLookup()
     {
         if (lookupTable != null) return;
 
-        lookupTable = new Dictionary<EnemyClass, Dictionary<EnemyStat, float>>();
+        lookupTable = new Dictionary<EnemyClass, Dictionary<EnemyStat, float[]>>();
 
         foreach (EnemyProgressionClass enemyProgressionClass in enemyClasses)
         {
-            var statLookupTable = new Dictionary<EnemyStat, float>();
+            var statLookupTable = new Dictionary<EnemyStat, float[]>();
             foreach (EnemyProgressionStat progressionStat in enemyProgressionClass.stats)
             {
-                statLookupTable[progressionStat.stat] = progressionStat.value;
+                statLookupTable[progressionStat.stat] = progressionStat.levels;
             }
             lookupTable[enemyProgressionClass.characterClass] = statLookupTable;
         }
+    }
+
+    public int GetLevels(EnemyClass enemyClass, EnemyStat stat)
+    {
+        BuildLookup();
+
+        float[] levels = lookupTable[enemyClass][stat];
+
+        return levels.Length;
     }
 
     [System.Serializable]
@@ -44,7 +60,6 @@ public class EnemyProgression : ScriptableObject
     public class EnemyProgressionStat
     {
         public EnemyStat stat;
-        public float value;
-        //public float[] levels;
+        public float[] levels;
     }
 }

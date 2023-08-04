@@ -1,12 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyBaseStats : MonoBehaviour
 {
+    [Range(1, 99)]
+    [SerializeField] int startingLevel = 1;
     [SerializeField] EnemyClass characterClass;
     [SerializeField] EnemyProgression progression = null;
+
+    int _currentLevel;
+    int CurrentLevel 
+    {
+        get
+        {
+            if (_currentLevel <= 0) 
+            {
+                return startingLevel;
+            }
+            return _currentLevel;
+        }
+        set
+        {
+
+        }
+    }
 
     public float GetStat(EnemyStat stat)
     {
@@ -16,7 +33,7 @@ public class EnemyBaseStats : MonoBehaviour
 
     private float GetBaseStat(EnemyStat stat)
     {
-        return progression.GetStat(characterClass, stat);
+        return progression.GetStat(characterClass, stat, CurrentLevel);
     }
 
     private float GetPercentageModifier(EnemyStat stat)
