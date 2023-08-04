@@ -8,7 +8,6 @@ public class Shooting : MonoBehaviour
     [SerializeField] float timeBetweenFiring;
 
     Camera mainCam;
-    bool canFire = true;
     float timer;
 
     private void Start()
@@ -20,21 +19,13 @@ public class Shooting : MonoBehaviour
         Vector3 rotation = GetMousePosition() - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-        if (!canFire)
+        
+        timer += Time.deltaTime;
+        if (timer > timeBetweenFiring)
         {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring)
-            {
-                canFire = true;
-                timer = 0;
-            }
-        }
-        if (Input.GetMouseButton(0) && canFire)
-        {
-            canFire = false;
             Instantiate(bulletPrefab, gun.position, Quaternion.identity);
-        }
+            timer = 0;
+        }        
     }
 
     private Vector3 GetMousePosition()
