@@ -1,29 +1,30 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float walkingSpeed;
-    [SerializeField] float jumpSpeed;
     [SerializeField] float jumpDuration;
     [SerializeField] SpriteRenderer sprite;
+    [SerializeField] float speed;
 
-    float speed;
-    float timeSinceJumpStarted = Mathf.Infinity;
-    Animator animator;    
-
+    Animator animator;
+    Camera mainCam;
     Rigidbody2D rb;
 
     void Start()
     {
-        speed = walkingSpeed;
         rb = GetComponent<Rigidbody2D>();
         animator = sprite.GetComponent<Animator>();
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
     {
         Run();
-        Jump();
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Jump());
+        }
         FlipSprite();
     }
 
@@ -32,27 +33,32 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("hit");
     }
 
-    private void Jump()
+    IEnumerator Jump()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            speed = jumpSpeed;
-        }
+        Vector2 startPosition = transform.position;
+        Vector2 targetPosition = GetMousePosition();
+        float timeElapsed = 0;
 
-        if (jumpDuration < timeSinceJumpStarted)
+        Debug.Log(targetPosition - startPosition);
+
+        while (timeElapsed < jumpDuration)
         {
-            timeSinceJumpStarted = 0;
-            speed = walkingSpeed;
+            transform.position = Vector2.Lerp(startPosition, targetPosition, timeElapsed / jumpDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
-        timeSinceJumpStarted += Time.deltaTime;
+    }
+
+    private Vector3 GetMousePosition()
+    {
+        return mainCam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void Run()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        rb.velocity = new Vector2(moveHorizontal, moveVertical) * speed;
+        Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movementDirection = Vector2.ClampMagnitude(movementDirection, 1);
+        transform.Translate(movementDirection * speed * Time.deltaTime);
 
         animator.SetBool("isRunning", HasSpeed(rb.velocity.x) || HasSpeed(rb.velocity.y));
     }
