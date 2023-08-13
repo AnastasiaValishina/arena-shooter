@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Arena.PlayerAttributes;
 using TMPro;
 using UnityEngine;
 
-public class HUD : MonoBehaviour
+namespace Arena.UI
 {
-    [SerializeField] TextMeshProUGUI hpText;
-    PlayerHealth playerHealth;
-
-    void Start()
+    public class HUD : MonoBehaviour
     {
-        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-    }
+        [SerializeField] TextMeshProUGUI hpText;
+        PlayerHealth playerHealth;
 
-    void Update()
-    {
-        hpText.text = playerHealth.GetHealthPoints().ToString();
+        void Start()
+        {
+            playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        }
+
+        void Update()
+        {
+            hpText.text = playerHealth.GetHealthPoints().ToString();
+        }
     }
 }

@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class CleanUpBooster : MonoBehaviour
+namespace Arena.Collectables
 {
-    [SerializeField] float lifeTime = 5;
+    public class CleanUpBooster : MonoBehaviour
+    {
+        [SerializeField] float lifeTime = 5;
 
-    private void Start()
-    {
-        Destroy(gameObject, 5f);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        private void Start()
         {
-            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in enemies)
+            Destroy(gameObject, 5f);
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
             {
-                Destroy(enemy);
+                var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (GameObject enemy in enemies)
+                {
+                    Destroy(enemy);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }

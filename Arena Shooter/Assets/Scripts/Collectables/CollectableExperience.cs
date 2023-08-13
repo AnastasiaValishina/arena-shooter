@@ -1,13 +1,17 @@
+using Arena.PlayerStats;
 using UnityEngine;
 
-public class CollectableExperience : MonoBehaviour
+namespace Arena.Collectables // возможно стоит перенести к классу Experience
 {
-    [SerializeField] int expValue;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class CollectableExperience : MonoBehaviour
     {
-        if (collision.tag != "Player") { return; }
-        FindObjectOfType<Experience>().AddExpPoints(expValue);
-        Destroy(gameObject);
+        [SerializeField] int expValue;
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag != "Player") { return; }
+            FindObjectOfType<Experience>().AddExpPoints(expValue);
+            Destroy(gameObject);
+        }
     }
 }
