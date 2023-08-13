@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Run();
         if (Input.GetMouseButtonDown(0))
