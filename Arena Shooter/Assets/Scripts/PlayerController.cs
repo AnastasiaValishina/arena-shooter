@@ -36,10 +36,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator Jump()
     {
         Vector2 startPosition = transform.position;
-        Vector2 targetPosition = GetMousePosition();
+        Vector2 targetPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
         float timeElapsed = 0;
-
-        Debug.Log(targetPosition - startPosition);
 
         while (timeElapsed < jumpDuration)
         {
@@ -47,11 +45,6 @@ public class PlayerController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-    }
-
-    private Vector3 GetMousePosition()
-    {
-        return mainCam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void Run()
