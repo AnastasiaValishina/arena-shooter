@@ -6,8 +6,13 @@ namespace Arena.PlayerAttributes
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] float jumpDuration;
+        [SerializeField] float jumpCooldownTime;
         [SerializeField] SpriteRenderer sprite;
         [SerializeField] float speed;
+
+        public float JumpCooldownTimer { get; private set; } = 0f;
+        public bool IsCooldown { get; private set; }
+        public float JumpCooldownTime { get { return jumpCooldownTime; } private set { } }
 
         Animator animator;
         Camera mainCam;
@@ -23,11 +28,17 @@ namespace Arena.PlayerAttributes
         void FixedUpdate()
         {
             Run();
+            FlipSprite();
+        }
+
+        private void Update()
+        {
             if (Input.GetMouseButtonDown(0))
             {
+                if (IsCooldown) return;
                 StartCoroutine(Jump());
             }
-            FlipSprite();
+            ApplyCooldown();
         }
 
         public void PlayHitAnimation()
@@ -37,6 +48,9 @@ namespace Arena.PlayerAttributes
 
         IEnumerator Jump()
         {
+            IsCooldown = true;
+            JumpCooldownTimer = jumpCooldownTime;
+
             Vector2 startPosition = transform.position;
             Vector2 targetPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
             float timeElapsed = 0;
@@ -47,6 +61,17 @@ namespace Arena.PlayerAttributes
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
+        }
+
+        void ApplyCooldown()
+        {
+            if (IsCooldown)
+            {
+                JumpCooldownTimer -= Time.deltaTime;
+
+                if (JumpCooldownTimer < 0)
+                    IsCooldown = false;
+            }    
         }
 
         void Run()
