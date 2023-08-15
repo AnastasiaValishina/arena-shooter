@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Arena.PlayerAttributes
+namespace Arena.HeroAttributes
 {
     public class PlayerController : MonoBehaviour
     {

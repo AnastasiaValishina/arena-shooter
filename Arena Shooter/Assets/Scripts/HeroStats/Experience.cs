@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Arena.PlayerStats
+namespace Arena.HeroStats
 {
     public class Experience : MonoBehaviour
     {

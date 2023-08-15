@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Arena.PlayerAttributes
+namespace Arena.HeroAttributes
 {
-    public class PlayerHealth : MonoBehaviour
+    public class Health : MonoBehaviour
     {
         [SerializeField] float healthPoints;
 

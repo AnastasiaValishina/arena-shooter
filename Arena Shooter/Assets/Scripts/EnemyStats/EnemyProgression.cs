@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Arena.EnemyStats
 {
-    [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression", order = 0)]
+    [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Enemy Progression", order = 0)]
     public class EnemyProgression : ScriptableObject
     {
         [SerializeField] EnemyProgressionClass[] enemyClasses;

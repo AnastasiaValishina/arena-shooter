@@ -1,4 +1,4 @@
-using Arena.PlayerAttributes;
+using Arena.HeroAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,13 +11,13 @@ namespace Arena.UI
         [SerializeField] TextMeshProUGUI jumpCooldownText;
         [SerializeField] Image jumpCooldownTint;
 
-        PlayerHealth playerHealth;
+        Health playerHealth;
         PlayerController playerController;
 
         void Start()
         {
             GameObject player = GameObject.FindWithTag("Player");
-            playerHealth = player.GetComponent<PlayerHealth>();
+            playerHealth = player.GetComponent<Health>();
             playerController = player.GetComponent<PlayerController>();
             jumpCooldownText.gameObject.SetActive(false);
             jumpCooldownTint.fillAmount = 0.0f;

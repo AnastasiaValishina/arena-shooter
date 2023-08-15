@@ -1,7 +1,7 @@
 using UnityEngine;
 using Arena.EnemySpawning;
 using Arena.EnemyStats;
-using Arena.PlayerAttributes;
+using Arena.HeroAttributes;
 
 namespace Arena.EnemyAttributes
 {
@@ -31,7 +31,7 @@ namespace Arena.EnemyAttributes
         {
             if (Time.time < nextHitTime) return;
             if (other.transform != target) return;
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            Health playerHealth = other.GetComponent<Health>();
             //if (target.IsDead()) return;
 
             playerHealth.TakeDamage(damage);
