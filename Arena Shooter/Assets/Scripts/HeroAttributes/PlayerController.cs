@@ -1,3 +1,4 @@
+using Arena.HeroStats;
 using System.Collections;
 using UnityEngine;
 
@@ -8,15 +9,21 @@ namespace Arena.HeroAttributes
         [SerializeField] float jumpDuration;
         [SerializeField] float jumpCooldownTime;
         [SerializeField] SpriteRenderer sprite;
-        [SerializeField] float speed;
+        
 
         public float JumpCooldownTimer { get; private set; } = 0f;
         public bool IsCooldown { get; private set; }
         public float JumpCooldownTime { get { return jumpCooldownTime; } private set { } }
 
+        float _speed;
         Animator animator;
         Camera mainCam;
         Rigidbody2D rb;
+
+        private void Awake()
+        {
+            _speed = GetComponent<HeroBaseStat>().GetStat(HeroStat.MoveSpeed);
+        }
 
         void Start()
         {
@@ -78,7 +85,7 @@ namespace Arena.HeroAttributes
         {
             Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             movementDirection = Vector2.ClampMagnitude(movementDirection, 1);
-            transform.Translate(movementDirection * speed * Time.deltaTime);
+            transform.Translate(movementDirection * _speed * Time.deltaTime);
 
             animator.SetBool("isRunning", HasSpeed(rb.velocity.x) || HasSpeed(rb.velocity.y));
         }
