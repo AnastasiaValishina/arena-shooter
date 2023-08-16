@@ -1,4 +1,5 @@
 using Arena.HeroAttributes;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ namespace Arena.UI
 
         void Update()
         {
-            hpText.text = playerHealth.GetHealthPoints().ToString();
+            hpText.text = Math.Truncate(playerHealth.HealthPoints).ToString();
             UpdateCooldown();
         }
 

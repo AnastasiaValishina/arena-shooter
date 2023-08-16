@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb234c3bd2b95584bad36fa6c64cb344, type: 3}
   m_Name: Hero Progression
   m_EditorClassIdentifier: 
-  heroClasses: []
+  heroClasses:
+  - heroClass: 0
+    stats:
+    - stat: 0
+      levels:
+      - 100
+      - 150
+      - 200
+      - 250
+    - stat: 1
+      levels:
+      - 0.5
+      - 0.05
+      - 0.05
+      - 0.05
+  - heroClass: 1
+    stats:
+    - stat: 0
+      levels: []
+  - heroClass: 2
+    stats: []

@@ -2,8 +2,11 @@ namespace Arena.HeroStats
 {
     public enum HeroStat
     {
-        Health,
-        Speed,
+        MaxHealth,
+        HealthRegeneration,
+        Armor,
+        Dodge,
+        MoveSpeed,
         Damage
     }
 }
