@@ -23,10 +23,22 @@ MonoBehaviour:
       - 250
     - stat: 1
       levels:
+      - 0.3
+      - 0.4
       - 0.5
-      - 0.05
-      - 0.05
-      - 0.05
+      - 0.6
+    - stat: 2
+      levels:
+      - 3
+      - 4
+      - 5
+      - 6
+    - stat: 3
+      levels:
+      - 30
+      - 4
+      - 5
+      - 6
   - heroClass: 1
     stats:
     - stat: 0

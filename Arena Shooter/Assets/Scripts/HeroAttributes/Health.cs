@@ -1,11 +1,15 @@
 using Arena.HeroStats;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Arena.HeroAttributes
 {
     public class Health : MonoBehaviour
     {
         float _maxHP;
+        float _armor;
+        float _dodgeChance;
         public float HealthPoints { get; private set; }
         public float HpRegeneration { get; private set; }
 
@@ -16,9 +20,12 @@ namespace Arena.HeroAttributes
         private void Awake()
         {
             controller = GetComponent<PlayerController>();
-            _maxHP = GetComponent<HeroBaseStat>().GetStat(HeroStat.MaxHealth);
+            HeroBaseStat heroBaseStat = GetComponent<HeroBaseStat>();
+            _maxHP = heroBaseStat.GetStat(HeroStat.MaxHealth);
             HealthPoints = _maxHP;
-            HpRegeneration = GetComponent<HeroBaseStat>().GetStat(HeroStat.HealthRegeneration);
+            HpRegeneration = heroBaseStat.GetStat(HeroStat.HealthRegeneration);
+            _armor = heroBaseStat.GetStat(HeroStat.Armor);
+            _dodgeChance = heroBaseStat.GetStat(HeroStat.Dodge);
         }
 
         private void Update()
@@ -41,6 +48,12 @@ namespace Arena.HeroAttributes
 
         public void TakeDamage(float damage)
         {
+            if (!IsDodged()) return;
+
+            damage -= _armor;
+            if (damage < 1) 
+                damage = 1;
+
             HealthPoints -= damage;
 
             controller.PlayHitAnimation();
@@ -49,6 +62,12 @@ namespace Arena.HeroAttributes
             {
                 Destroy(gameObject);
             }
+        }
+
+        bool IsDodged()
+        {
+            int chance = Random.Range(0, 100);
+            return chance <= _dodgeChance ? true : false;
         }
     }
 }
