@@ -20,10 +20,7 @@ namespace Arena.HeroAttributes
                 {
                     _dodgeChance = 60;
                 }
-                else
-                {
-                    _dodgeChance = value;
-                }
+                else { _dodgeChance = value; }
             }
         }
         public float HealthPoints { get; private set; }
@@ -42,7 +39,6 @@ namespace Arena.HeroAttributes
             HpRegeneration = heroBaseStat.GetStat(HeroStat.HealthRegeneration);
             _armor = heroBaseStat.GetStat(HeroStat.Armor);
             DodgeChance = heroBaseStat.GetStat(HeroStat.Dodge);
-            Debug.Log(DodgeChance);
         }
 
         private void Update()

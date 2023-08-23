@@ -7,6 +7,7 @@ namespace Arena.HeroStats
         Armor,
         Dodge,
         MoveSpeed,
-        Damage
+        ExpGain,
+        MagnetRadius
     }
 }

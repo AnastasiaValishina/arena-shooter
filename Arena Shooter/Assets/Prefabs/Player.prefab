@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 2208410386830242410}
   - component: {fileID: 2208410386830242404}
   - component: {fileID: 7911932692195983938}
+  - component: {fileID: 1583987366}
+  - component: {fileID: 980032084631862190}
+  - component: {fileID: 3085613337628866527}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -49,9 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa816376972080f4d9029577b9e91f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 3
-  jumpSpeed: 10
-  jumpDuration: 1
+  jumpDuration: 0.4
+  jumpCooldownTime: 6
   sprite: {fileID: 6721193164759046197}
 --- !u!50 &2208410386830242410
 Rigidbody2D:
@@ -102,7 +104,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadcf666c1498ed45acbde853c571df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
+--- !u!114 &1583987366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208410386830242415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea475d6d9197d9545b77001e18208066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  characterClass: 0
+  progression: {fileID: 11400000, guid: 3323919ae11db994f9ac320e4278a4c6, type: 2}
+--- !u!58 &980032084631862190
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208410386830242415}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.12}
+  serializedVersion: 2
+  m_Radius: 9
+--- !u!114 &3085613337628866527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208410386830242415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1787af7dca85d1b46978fce47f3f6d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2508570363670927860
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,4 +384,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5094606752478236023, guid: ead77fd1a28e2e042b240325f22b7ac1, type: 3}
   bulletSpeed: 7
   gun: {fileID: 205064186106387940}
-  timeBetweenFiring: 0.2
+  timeBetweenFiring: 0.3
