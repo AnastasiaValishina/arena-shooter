@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1583987366}
   - component: {fileID: 980032084631862190}
   - component: {fileID: 3085613337628866527}
+  - component: {fileID: 1583987373}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -134,7 +135,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.12}
   serializedVersion: 2
-  m_Radius: 9
+  m_Radius: 1
 --- !u!114 &3085613337628866527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1787af7dca85d1b46978fce47f3f6d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1583987373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208410386830242415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381b3b8e809880e48ac230ad21b9007e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatePoint: {fileID: 3141219164568333496}
+  bulletPrefab: {fileID: 5094606752478236023, guid: ead77fd1a28e2e042b240325f22b7ac1, type: 3}
+  bulletSpeed: 7
+  gun: {fileID: 205064186106387940}
+  timeBetweenFiring: 0.3
 --- !u!1 &2508570363670927860
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +363,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3141219164568333496}
-  - component: {fileID: 2208410385720346831}
   m_Layer: 3
   m_Name: RotatePoint
   m_TagString: Untagged
@@ -369,19 +386,3 @@ Transform:
   m_Father: {fileID: 2208410386830242408}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2208410385720346831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8767439888362011321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381b3b8e809880e48ac230ad21b9007e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5094606752478236023, guid: ead77fd1a28e2e042b240325f22b7ac1, type: 3}
-  bulletSpeed: 7
-  gun: {fileID: 205064186106387940}
-  timeBetweenFiring: 0.3
