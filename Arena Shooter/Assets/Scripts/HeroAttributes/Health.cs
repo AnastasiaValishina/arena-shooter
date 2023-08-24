@@ -1,5 +1,4 @@
 using Arena.HeroStats;
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -62,6 +61,7 @@ namespace Arena.HeroAttributes
         public void TakeDamage(float damage)
         {
             if (!IsDodged()) return;
+            if (controller.IsJumping) return;
 
             damage -= _armor;
             if (damage < 1) 

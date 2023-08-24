@@ -14,6 +14,7 @@ namespace Arena.HeroAttributes
         public float JumpCooldownTimer { get; private set; } = 0f;
         public bool IsCooldown { get; private set; }
         public float JumpCooldownTime { get { return jumpCooldownTime; } private set { } }
+        public bool IsJumping { get; private set; }
 
         float _speed;
         Animator animator;
@@ -55,6 +56,7 @@ namespace Arena.HeroAttributes
 
         IEnumerator Jump()
         {
+            IsJumping = true;
             IsCooldown = true;
             JumpCooldownTimer = jumpCooldownTime;
 
@@ -68,6 +70,7 @@ namespace Arena.HeroAttributes
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
+            IsJumping = false;
         }
 
         void ApplyCooldown()
