@@ -8,6 +8,10 @@ namespace Arena.HeroStats
         Dodge,
         MoveSpeed,
         ExpGain,
-        MagnetRadius
+        MagnetRadius,
+        JumpDamage,
+        DamageArea,
+        Cooldown,
+        JumpsInRow
     }
 }

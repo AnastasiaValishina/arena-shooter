@@ -1,4 +1,4 @@
-using Arena.HeroStats;
+using Arena.HeroAttributes;
 using UnityEngine;
 
 namespace Arena.Collectables // возможно стоит перенести к классу Experience

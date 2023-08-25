@@ -10,20 +10,22 @@ namespace Arena.HeroAttributes
         [SerializeField] float jumpCooldownTime;
         [SerializeField] SpriteRenderer sprite;
         
-
         public float JumpCooldownTimer { get; private set; } = 0f;
         public bool IsCooldown { get; private set; }
         public float JumpCooldownTime { get { return jumpCooldownTime; } private set { } }
         public bool IsJumping { get; private set; }
+        //public int jumpsInRow { get; private set; }
 
         float _speed;
         Animator animator;
         Camera mainCam;
         Rigidbody2D rb;
+        //int _jumpsLeft;
 
         private void Awake()
         {
-            _speed = GetComponent<HeroBaseStat>().GetStat(HeroStat.MoveSpeed);
+            _speed = GetComponent<BaseStats>().GetStat(HeroStat.MoveSpeed);
+            
         }
 
         void Start()

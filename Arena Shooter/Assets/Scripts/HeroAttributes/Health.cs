@@ -32,12 +32,12 @@ namespace Arena.HeroAttributes
         private void Awake()
         {
             controller = GetComponent<PlayerController>();
-            HeroBaseStat heroBaseStat = GetComponent<HeroBaseStat>();
-            _maxHP = heroBaseStat.GetStat(HeroStat.MaxHealth);
+            BaseStats baseStats = GetComponent<BaseStats>();
+            _maxHP = baseStats.GetStat(HeroStat.MaxHealth);
             HealthPoints = _maxHP;
-            HpRegeneration = heroBaseStat.GetStat(HeroStat.HealthRegeneration);
-            _armor = heroBaseStat.GetStat(HeroStat.Armor);
-            DodgeChance = heroBaseStat.GetStat(HeroStat.Dodge);
+            HpRegeneration = baseStats.GetStat(HeroStat.HealthRegeneration);
+            _armor = baseStats.GetStat(HeroStat.Armor);
+            DodgeChance = baseStats.GetStat(HeroStat.Dodge);
         }
 
         private void Update()

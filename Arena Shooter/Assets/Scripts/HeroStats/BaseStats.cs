@@ -2,12 +2,11 @@ using UnityEngine;
 
 namespace Arena.HeroStats
 {
-    public class HeroBaseStat : MonoBehaviour
+    public class BaseStats : MonoBehaviour
     {
-        [Range(1, 99)]
         [SerializeField] int startingLevel = 1;
-        [SerializeField] HeroClass characterClass;
-        [SerializeField] HeroProgression progression = null;
+
+        [SerializeField] Character progression = null;
 
         int _currentLevel;
         int CurrentLevel
@@ -31,7 +30,7 @@ namespace Arena.HeroStats
 
         private float GetBaseStat(HeroStat stat)
         {
-            return progression.GetStat(characterClass, stat, CurrentLevel);
+            return progression.GetStat(stat, CurrentLevel);
         }
 
         private float GetPercentageModifier(HeroStat stat)
