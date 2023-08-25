@@ -9,17 +9,20 @@ namespace Arena.UI
     public class HUD : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI hpText;
+        [SerializeField] TextMeshProUGUI expText;
         [SerializeField] TextMeshProUGUI jumpCooldownText;
         [SerializeField] Image jumpCooldownTint;
 
         Health playerHealth;
         PlayerController playerController;
+        Experience experience;
 
         void Start()
         {
             GameObject player = GameObject.FindWithTag("Player");
             playerHealth = player.GetComponent<Health>();
             playerController = player.GetComponent<PlayerController>();
+            experience = player.GetComponent<Experience>();
             jumpCooldownText.gameObject.SetActive(false);
             jumpCooldownTint.fillAmount = 0.0f;
         }
@@ -27,6 +30,7 @@ namespace Arena.UI
         void Update()
         {
             hpText.text = Math.Truncate(playerHealth.HealthPoints).ToString();
+            expText.text = Math.Truncate(experience.ExpPoints).ToString();
             UpdateCooldown();
         }
 

@@ -1359,6 +1359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 1357194132}
+  expText: {fileID: 117521432}
   jumpCooldownText: {fileID: 1917333999}
   jumpCooldownTint: {fileID: 455198264}
 --- !u!1 &675119660

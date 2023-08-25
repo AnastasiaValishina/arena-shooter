@@ -5,8 +5,9 @@ namespace Arena.HeroAttributes
 {
     public class Experience : MonoBehaviour
     {
-        float _experience = 0;
         float expGain = 0;
+
+        public float ExpPoints { get; private set; }
 
         private void Awake()
         {
@@ -16,7 +17,7 @@ namespace Arena.HeroAttributes
         public void AddExpPoints(int expValue)
         {
             float pointsToAdd = expValue + (expValue * expGain / 100);
-            _experience += pointsToAdd;
+            ExpPoints += pointsToAdd;
         }
     }
 }
