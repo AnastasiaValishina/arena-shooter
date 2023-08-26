@@ -47,6 +47,7 @@ namespace Arena.HeroAttributes
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (IsJumping) return;
                 if (_jumpsLeft <= 0 && IsCooldown) return;
 
                 StartCoroutine(Jump());                
@@ -61,13 +62,13 @@ namespace Arena.HeroAttributes
 
         IEnumerator Jump()
         {
+            IsJumping = true;
+
             if (_jumpsLeft == JumpsInRow)
             {
                 IsCooldown = true;
                 JumpCooldownTimer = _jumpCooldownTime;
             }
-
-            IsJumping = true;
 
             Vector2 startPosition = transform.position;
             Vector2 targetPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
