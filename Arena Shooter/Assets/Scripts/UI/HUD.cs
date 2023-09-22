@@ -10,6 +10,7 @@ namespace Arena.UI
     {
         [SerializeField] TextMeshProUGUI hpText;
         [SerializeField] TextMeshProUGUI expText;
+        [SerializeField] TextMeshProUGUI JumpsLeftText;
         [SerializeField] TextMeshProUGUI jumpCooldownText;
         [SerializeField] Image jumpCooldownTint;
 
@@ -31,6 +32,7 @@ namespace Arena.UI
         {
             hpText.text = Math.Truncate(playerHealth.HealthPoints).ToString();
             expText.text = Math.Truncate(experience.ExpPoints).ToString();
+            JumpsLeftText.text = playerController.JumpsLeft.ToString();
             UpdateCooldown();
         }
 

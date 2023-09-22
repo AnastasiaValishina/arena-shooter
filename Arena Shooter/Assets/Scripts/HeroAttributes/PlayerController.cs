@@ -12,6 +12,7 @@ namespace Arena.HeroAttributes
         public float JumpCooldownTimer { get; private set; } = 0f;
         public bool IsCooldown { get; private set; }
         public float JumpCooldownTime { get { return _jumpCooldownTime; } private set { } }
+        public int JumpsLeft { get { return _jumpsLeft; } private set { } }
         public bool IsJumping { get; private set; }
         public int JumpsInRow { get; private set; }
 
@@ -69,6 +70,7 @@ namespace Arena.HeroAttributes
                 IsCooldown = true;
                 JumpCooldownTimer = _jumpCooldownTime;
             }
+            _jumpsLeft--;
 
             Vector2 startPosition = transform.position;
             Vector2 targetPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -81,7 +83,6 @@ namespace Arena.HeroAttributes
                 yield return null;
             }
             IsJumping = false;
-            _jumpsLeft--;
         }
 
         void ApplyCooldown()
