@@ -40,7 +40,13 @@ namespace Arena.EnemyAttributes
 
         private void OnEnable() { FindObjectOfType<EnemySpawner>().onBufferSpawn += UpdateSpeed; }
 
-        private void OnDisable() { FindObjectOfType<EnemySpawner>().onBufferSpawn -= UpdateSpeed; }
+        private void OnDisable() 
+        {
+            var spawner = FindObjectOfType<EnemySpawner>();
+
+            if (spawner != null) 
+                spawner.onBufferSpawn -= UpdateSpeed; 
+        }
 
         protected void SetTarget()
         {

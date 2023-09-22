@@ -1,4 +1,5 @@
 using Arena.HeroAttributes;
+using Arena.HeroStats;
 using UnityEngine;
 
 namespace Arena.Combat
@@ -6,7 +7,7 @@ namespace Arena.Combat
     public class Shooting : MonoBehaviour
     {
         [SerializeField] Transform rotatePoint;
-        [SerializeField] Bullet bulletPrefab;
+        [SerializeField] Projectile bulletPrefab;
         [SerializeField] float bulletSpeed;
         [SerializeField] Transform gun;
         [SerializeField] float timeBetweenFiring;
@@ -14,10 +15,12 @@ namespace Arena.Combat
         Camera mainCam;
         float timer;
         PlayerController controller;
+        float weaponDamage;
 
         private void Awake()
         {
             controller = GetComponent<PlayerController>();
+            weaponDamage = GetComponent<BaseStats>().GetStat(HeroStat.Damage);
         }
         private void Start()
         {
@@ -35,7 +38,8 @@ namespace Arena.Combat
 
             if (timer > timeBetweenFiring)
             {
-                Instantiate(bulletPrefab, gun.position, Quaternion.identity);
+                Projectile bullet = Instantiate(bulletPrefab, gun.position, Quaternion.identity);
+                bullet.SetDamage(weaponDamage);
                 timer = 0;
             }
         }

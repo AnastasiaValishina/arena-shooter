@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace Arena.Combat
 {
-    public class Bullet : MonoBehaviour
+    public class Projectile : MonoBehaviour
     {
-        [SerializeField] int damage;
-
+        float damage;
         Camera mainCam;
         Rigidbody2D rb;
         public float force;
@@ -24,10 +23,12 @@ namespace Arena.Combat
             // float rot = Mathf.Atan2(rotation.y, rotation.y) * Mathf.Rad2Deg;
             // transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         }
+
         private Vector3 GetMousePosition()
         {
             return mainCam.ScreenToWorldPoint(Input.mousePosition);
         }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
@@ -38,6 +39,11 @@ namespace Arena.Combat
             {
                 Destroy(gameObject);
             }
+        }
+
+        public void SetDamage(float weaponDamage)
+        {
+            damage = weaponDamage;
         }
     }
 }

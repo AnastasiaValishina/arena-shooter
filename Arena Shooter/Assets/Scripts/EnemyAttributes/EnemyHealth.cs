@@ -12,7 +12,7 @@ namespace Arena.EnemyAttributes
             healthPoints = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Health);
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             healthPoints -= damage;
             if (healthPoints <= 0)

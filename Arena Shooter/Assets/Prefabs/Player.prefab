@@ -107,8 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa816376972080f4d9029577b9e91f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDuration: 0.4
-  jumpCooldownTime: 6
+  _jumpDuration: 0.5
   sprite: {fileID: 6721193164759046197}
 --- !u!114 &243553206969442256
 MonoBehaviour:

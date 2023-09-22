@@ -9,6 +9,9 @@ namespace Arena.HeroStats
         MoveSpeed,
         ExpGain,
         MagnetRadius,
+        Damage,
+        WeaponMaxRange,
+
         JumpDamage,
         DamageArea,
         Cooldown,
