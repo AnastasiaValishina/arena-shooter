@@ -20,13 +20,25 @@ public class JumpDamager : MonoBehaviour
     public void CauseDamage()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _jumpDamageArea);
+        float totalDamage = GetCritDamage();
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.GetComponent<EnemyHealth>() != null)
             {
-                collider.GetComponent<EnemyHealth>().TakeDamage(_jumpDamage);
+                collider.GetComponent<EnemyHealth>().TakeDamage(totalDamage);
             }
         }
+    }
+
+    private float GetCritDamage()
+    {
+        float damage = _jumpDamage;
+        int randomIndex = Random.Range(0, 100);
+
+        if (randomIndex > _critChance)
+            damage *= _critBonus;
+
+        return damage;
     }
 }
