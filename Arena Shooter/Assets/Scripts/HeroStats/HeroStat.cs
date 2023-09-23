@@ -12,9 +12,13 @@ namespace Arena.HeroStats
         Damage,
         WeaponMaxRange,
 
+        JumpDuration,
         JumpDamage,
         DamageArea,
         Cooldown,
-        JumpsInRow
+        JumpsInRow,
+
+        CritChance,
+        CritBonus
     }
 }

@@ -8,11 +8,12 @@ namespace Arena.HeroAttributes
     {
         [SerializeField] float _jumpDuration;
         [SerializeField] SpriteRenderer sprite;
+        [SerializeField] JumpDamager jumpDamager;
         
         public float JumpCooldownTimer { get; private set; } = 0f;
         public bool IsCooldown { get; private set; }
         public float JumpCooldownTime { get { return _jumpCooldownTime; } private set { } }
-        public int JumpsLeft { get { return _jumpsLeft; } private set { } }
+        public int JumpsLeft { get; private set; }
         public bool IsJumping { get; private set; }
         public int JumpsInRow { get; private set; }
 
@@ -21,14 +22,13 @@ namespace Arena.HeroAttributes
         Camera mainCam;
         Rigidbody2D rb;
         float _jumpCooldownTime;
-        int _jumpsLeft;
 
         private void Awake()
         {
             _speed = GetComponent<BaseStats>().GetStat(HeroStat.MoveSpeed);
             _jumpCooldownTime = GetComponent<BaseStats>().GetStat(HeroStat.Cooldown);
             JumpsInRow = (int)GetComponent<BaseStats>().GetStat(HeroStat.JumpsInRow);
-            _jumpsLeft = JumpsInRow;
+            JumpsLeft = JumpsInRow;
         }
 
         void Start()
@@ -49,7 +49,7 @@ namespace Arena.HeroAttributes
             if (Input.GetMouseButtonDown(0))
             {
                 if (IsJumping) return;
-                if (_jumpsLeft <= 0 && IsCooldown) return;
+                if (JumpsLeft <= 0 && IsCooldown) return;
 
                 StartCoroutine(Jump());                
             }
@@ -65,12 +65,12 @@ namespace Arena.HeroAttributes
         {
             IsJumping = true;
 
-            if (_jumpsLeft == JumpsInRow)
+            if (JumpsLeft == JumpsInRow)
             {
                 IsCooldown = true;
                 JumpCooldownTimer = _jumpCooldownTime;
             }
-            _jumpsLeft--;
+            JumpsLeft--;
 
             Vector2 startPosition = transform.position;
             Vector2 targetPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -83,6 +83,7 @@ namespace Arena.HeroAttributes
                 yield return null;
             }
             IsJumping = false;
+            jumpDamager.CauseDamage();
         }
 
         void ApplyCooldown()
@@ -94,7 +95,7 @@ namespace Arena.HeroAttributes
                 if (JumpCooldownTimer < 0)
                 {
                     IsCooldown = false;
-                    _jumpsLeft = JumpsInRow;
+                    JumpsLeft = JumpsInRow;
                 }
             }    
         }
