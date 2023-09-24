@@ -4,10 +4,10 @@ namespace Arena.HeroStats
 {
     public class BaseStats : MonoBehaviour
     {
-        [SerializeField] int startingLevel = 1;
-
+        [SerializeField] CharacterType characterType;        
         [SerializeField] Character progression = null;
 
+        int _startingLevel = 1;
         int _currentLevel;
         int CurrentLevel
         {
@@ -15,7 +15,7 @@ namespace Arena.HeroStats
             {
                 if (_currentLevel <= 0)
                 {
-                    return startingLevel;
+                    return _startingLevel;
                 }
                 return _currentLevel;
             }
@@ -37,5 +37,12 @@ namespace Arena.HeroStats
         {
             return 0; // проверить надо ли
         }
+    }
+
+    public enum CharacterType
+    {
+        Melee,
+        Archer,
+        Bomber
     }
 }

@@ -5,17 +5,17 @@ namespace Arena.EnemyAttributes
 {
     public class EnemyHealth : MonoBehaviour
     {
-        [SerializeField] float healthPoints;
+        private float _healthPoints;
 
         private void Awake()
         {
-            healthPoints = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Health);
+            _healthPoints = GetComponent<EnemyBaseStats>().GetStat(EnemyStat.Health);
         }
 
         public void TakeDamage(float damage)
         {
-            healthPoints -= damage;
-            if (healthPoints <= 0)
+            _healthPoints -= damage;
+            if (_healthPoints <= 0)
             {
                 Destroy(gameObject);
             }

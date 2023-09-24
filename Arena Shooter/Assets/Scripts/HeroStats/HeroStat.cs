@@ -17,7 +17,7 @@ namespace Arena.HeroStats
         DamageArea,
         Cooldown,
         JumpsInRow,
-
+        AbilityRadius,
         CritChance,
         CritBonus
     }

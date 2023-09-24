@@ -155,6 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenHits: 1
+  knockbackDuration: 0.3
+  testGO: {fileID: 3224370248023793394, guid: fc8cbfbc25514c0409e3fd556a5bfe3e, type: 3}
+  testGO2: {fileID: 3224370248023793394, guid: 1ec9b463774291043b0722ee5fe63d15, type: 3}
 --- !u!114 &9008963993845234548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,4 +186,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de2c2a67ff3e2b4ca8dc0a56de4f3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 10
