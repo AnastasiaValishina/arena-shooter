@@ -1,6 +1,7 @@
 using Arena.EnemySpawning;
 using Arena.EnemyStats;
 using Arena.HeroAttributes;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Arena.EnemyAttributes
         protected Transform target;
         protected float currentSpeed;
         protected float damage = 0;
+        protected bool canMove = true;
 
         private float nextHitTime;
 
@@ -26,14 +28,23 @@ namespace Arena.EnemyAttributes
 
         void Update()
         {
-            MoveToTarget();
+            if (canMove)
+                MoveToTarget();
         }
 
         public void KnockBack(float radius, Vector2 sender)
         {
+            canMove = false;
             StopAllCoroutines();
             StartCoroutine(MoveFrom(radius, sender));
+            canMove = true;
         }
+
+/*        public void Slowdown(float radius, Vector3 position)
+        {
+            throw new NotImplementedException();
+        }*/
+
         private IEnumerator MoveFrom(float radius, Vector2 senderPosition)
         {
             Vector2 startPosition = transform.position;

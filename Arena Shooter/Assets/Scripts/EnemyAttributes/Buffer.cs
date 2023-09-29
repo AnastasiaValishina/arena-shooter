@@ -11,7 +11,8 @@ namespace Arena.EnemyAttributes
 
         void Update()
         {
-            if (InRangeOfPlayer())
+            if (!canMove) return;
+            if (InRangeOfPlayer()) 
             {
                 MoveAway();
             }

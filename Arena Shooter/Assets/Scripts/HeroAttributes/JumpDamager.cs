@@ -48,7 +48,6 @@ namespace Arena.HeroAttributes
             return damage;
         }
 
-        // Knockback - Радиус окружности на край которой отталкиваются враги.Центр круга в мете куда прыгнул персонаж
         public void KnockBack()
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _abilityRadius);
@@ -60,6 +59,16 @@ namespace Arena.HeroAttributes
             }
         }
 
+/*        public void SlowEnemies()
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _abilityRadius);
+            foreach (Collider2D collider in colliders)
+            {
+                Enemy enemy = collider.GetComponent<Enemy>();
+                if (enemy != null)
+                    enemy.Slowdown(_abilityRadius, transform.position);
+            }
+        }*/
         // Slowing - Радиус окружности в которой замендляются враги.Центр круга в мете куда прыгнул персонаж
         // Taunt -  Радиус окружности в которой стягиваются враги к центру. Центр круга в мете куда прыгнул персонаж.
 
