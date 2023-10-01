@@ -20,7 +20,7 @@ namespace Arena.Combat
         private void Awake()
         {
             controller = GetComponent<PlayerController>();
-            weaponDamage = GetComponent<BaseStats>().GetStat(HeroStat.Damage);
+            weaponDamage = GetComponent<Stats>().GetDamage();
         }
         private void Start()
         {

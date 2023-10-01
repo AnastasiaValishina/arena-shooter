@@ -25,9 +25,9 @@ namespace Arena.HeroAttributes
 
         private void Awake()
         {
-            _speed = GetComponent<BaseStats>().GetStat(HeroStat.MoveSpeed);
-            _jumpCooldownTime = GetComponent<BaseStats>().GetStat(HeroStat.Cooldown);
-            JumpsInRow = (int)GetComponent<BaseStats>().GetStat(HeroStat.JumpsInRow);
+            _speed = GetComponent<Stats>().GetMoveSpeed();
+            _jumpCooldownTime = GetComponent<Stats>().GetCooldown();
+            JumpsInRow = GetComponent<Stats>().GetJumpsInRow();
             JumpsLeft = JumpsInRow;
         }
 

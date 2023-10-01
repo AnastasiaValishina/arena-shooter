@@ -14,12 +14,12 @@ namespace Arena.HeroAttributes
 
         private void Awake()
         {
-            BaseStats baseStats = GetComponent<BaseStats>();
-            _jumpDamage = baseStats.GetStat(HeroStat.JumpDamage);
-            _jumpDamageArea = baseStats.GetStat(HeroStat.DamageArea);
-            _critChance = baseStats.GetStat(HeroStat.CritChance);
-            _critBonus = baseStats.GetStat(HeroStat.CritBonus);
-            _abilityRadius = baseStats.GetStat(HeroStat.AbilityRadius);
+            Stats stats = GetComponent<Stats>();
+            _jumpDamage = stats.GetJumpDamage();
+            _jumpDamageArea = stats.GetDamageArea();
+            _critChance = stats.GetCritChance();
+            _critBonus = stats.GetCritBonus();
+            _abilityRadius = stats.GetAbilityRadius();
         }
 
         public void CauseDamage()

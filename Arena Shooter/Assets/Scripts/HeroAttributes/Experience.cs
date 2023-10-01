@@ -11,7 +11,7 @@ namespace Arena.HeroAttributes
 
         private void Awake()
         {
-            expGain = GetComponent<BaseStats>().GetStat(HeroStat.ExpGain);
+            expGain = GetComponent<Stats>().GetExpGain();
         }
 
         public void AddExpPoints(int expValue)

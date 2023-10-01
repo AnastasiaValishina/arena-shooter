@@ -9,7 +9,7 @@ namespace Arena.HeroAttributes
 
         private void Awake()
         {
-            raduis = GetComponent<BaseStats>().GetStat(HeroStat.MagnetRadius);
+            raduis = GetComponent<Stats>().GetMagnetRadius();
             GetComponent<CircleCollider2D>().radius = raduis; 
         }
     }
